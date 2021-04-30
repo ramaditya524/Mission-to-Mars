@@ -40,10 +40,12 @@ def mars_news(browser):
     try:
         slide_elem = news_soup.select_one('div.list_text')
         slide_elem.find('div', class_='content_title')
-        news_title=slide_elem.find('div', class_='content_title').get_text()
         #news_title
-        news_summary=slide_elem.find('div', class_='article_teaser_body').get_text()
+        news_title=slide_elem.find('div', class_='content_title').get_text()
         #news_summary
+        news_summary=slide_elem.find('div', class_='article_teaser_body').get_text()
+        #new_image
+        
     except AttributeError:
         return None, None
 
@@ -84,8 +86,8 @@ def mars_facts():
     except BaseException:
         return None
 
-    df.columns=['description', 'Mars', 'Earth']
-    df.set_index('description', inplace=True)
+    df.columns=['Description', 'Mars', 'Earth']
+    df.set_index('Description', inplace=True)
     return df.to_html()
 
 def mars_hemisphere(browser):
